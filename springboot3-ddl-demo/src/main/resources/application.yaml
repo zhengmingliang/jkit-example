@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: springboot3-ddl-demo
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3308/jkit_ddl_prefix
+    username: root
+    password: 123456
+
+  # 只让 jkit-sql-auto 负责 DDL；关闭 Hibernate 自动建表，避免双重建表干扰验证,使用mybatis无须关心
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+jkit:
+  sql:
+    auto:
+      enabled: true
+      mode: update
+      packages: com.alianga.test.springboot3ddldemo.entity
+      # 表名前缀：所有自动建表统一加 t_ 前缀
+      table-prefix: t_
+      # catalog 不再需要显式配置：Inspector 会自动从 JDBC 连接取当前库
